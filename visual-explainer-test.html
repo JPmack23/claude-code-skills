@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>1TEAM — Employee Benefits Explained</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Primary */
+      --color-ocean: #0A3F5F;
+      --color-pebble: #BDBEBF;
+
+      /* Secondary */
+      --color-sunshine: #FFC257;
+      --color-cyclamen: #FA619E;
+      --color-neon-blue: #4E68FE;
+      --color-plum: #7347A4;
+      --color-sea-green: #319464;
+
+      /* Neutral */
+      --color-white: #FFFFFF;
+      --color-off-white: #f8f9fa;
+      --color-dark-text: #0A3F5F;
+
+      /* Typography */
+      --font-heading: 'Montserrat', sans-serif;
+      --font-body: 'Open Sans', sans-serif;
+
+      /* Spacing */
+      --space-xs: 0.5rem;
+      --space-sm: 1rem;
+      --space-md: 1.5rem;
+      --space-lg: 2rem;
+      --space-xl: 3rem;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background: var(--color-white);
+      color: var(--color-dark-text);
+      margin: 0;
+      padding: 0;
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--color-ocean);
+      padding: var(--space-lg) var(--space-lg);
+      display: flex;
+      align-items: center;
+    }
+
+    header span {
+      color: white;
+      font-family: var(--font-heading);
+      font-size: 1.25rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+    }
+
+    .hero {
+      background: var(--color-ocean);
+      color: white;
+      padding: 60px var(--space-lg);
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-family: var(--font-heading);
+      font-size: 2.75rem;
+      margin: 0 0 var(--space-md) 0;
+      font-weight: 800;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      opacity: 0.95;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    main {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-md);
+    }
+
+    section {
+      margin-bottom: 60px;
+    }
+
+    h2 {
+      font-family: var(--font-heading);
+      font-size: 2rem;
+      margin: 0 0 var(--space-lg) 0;
+      color: var(--color-ocean);
+      font-weight: 800;
+    }
+
+    .overview {
+      background: var(--color-off-white);
+      padding: var(--space-xl);
+      border-radius: 8px;
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .overview-stat {
+      font-family: var(--font-heading);
+      font-size: 2.25rem;
+      color: var(--color-ocean);
+      font-weight: 800;
+      margin: 0;
+    }
+
+    .overview-label {
+      font-size: 0.95rem;
+      color: var(--color-dark-text);
+      margin-top: var(--space-sm);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    /* Flow Diagram */
+    .flow-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: var(--space-lg);
+      margin: var(--space-xl) 0;
+      position: relative;
+    }
+
+    .flow-step {
+      flex: 1;
+      min-width: 180px;
+      text-align: center;
+      position: relative;
+      padding: var(--space-lg);
+      background: white;
+      border: 2px solid var(--color-pebble);
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .flow-step:hover {
+      box-shadow: 0 8px 24px rgba(10, 63, 95, 0.12);
+      border-color: var(--color-ocean);
+    }
+
+    .flow-step-number {
+      display: inline-block;
+      width: 40px;
+      height: 40px;
+      background: var(--color-ocean);
+      color: white;
+      border-radius: 50%;
+      line-height: 40px;
+      font-family: var(--font-heading);
+      font-weight: 800;
+      margin-bottom: var(--space-sm);
+      font-size: 1.25rem;
+    }
+
+    .flow-step h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      margin: var(--space-md) 0 var(--space-sm) 0;
+      color: var(--color-ocean);
+    }
+
+    .flow-step p {
+      font-size: 0.95rem;
+      margin: 0;
+      color: #666;
+    }
+
+    .flow-arrow {
+      position: absolute;
+      top: 50%;
+      right: -24px;
+      width: 20px;
+      text-align: center;
+      color: var(--color-pebble);
+      font-size: 1.5rem;
+      transform: translateY(-50%);
+      z-index: 1;
+    }
+
+    .flow-step:last-child .flow-arrow {
+      display: none;
+    }
+
+    /* Benefits Grid */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-lg);
+      margin: var(--space-xl) 0;
+    }
+
+    .benefit-card {
+      background: white;
+      border: 2px solid var(--color-pebble);
+      border-radius: 8px;
+      padding: var(--space-lg);
+      text-align: center;
+      transition: all 0.3s ease;
+      border-left: 5px solid var(--color-pebble);
+    }
+
+    .benefit-card:nth-child(1) { border-left-color: var(--color-sea-green); }
+    .benefit-card:nth-child(2) { border-left-color: var(--color-neon-blue); }
+    .benefit-card:nth-child(3) { border-left-color: var(--color-sunshine); }
+    .benefit-card:nth-child(4) { border-left-color: var(--color-cyclamen); }
+    .benefit-card:nth-child(5) { border-left-color: var(--color-plum); }
+    .benefit-card:nth-child(6) { border-left-color: var(--color-ocean); }
+
+    .benefit-card:hover {
+      box-shadow: 0 8px 24px rgba(10, 63, 95, 0.12);
+      transform: translateY(-4px);
+    }
+
+    .benefit-icon {
+      font-size: 2.5rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .benefit-card h3 {
+      font-family: var(--font-heading);
+      font-size: 1.1rem;
+      margin: var(--space-sm) 0;
+      color: var(--color-ocean);
+    }
+
+    .benefit-card p {
+      font-size: 0.95rem;
+      margin: 0;
+      color: #666;
+    }
+
+    /* Timeline */
+    .timeline {
+      position: relative;
+      padding: var(--space-xl) 0;
+    }
+
+    .timeline-item {
+      display: flex;
+      margin-bottom: var(--space-xl);
+      position: relative;
+      padding-left: 60px;
+    }
+
+    .timeline-marker {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 40px;
+      height: 40px;
+      background: var(--color-ocean);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-weight: 700;
+      font-size: 0.9rem;
+    }
+
+    .timeline-item:nth-child(1) .timeline-marker { background: var(--color-sea-green); }
+    .timeline-item:nth-child(2) .timeline-marker { background: var(--color-neon-blue); }
+    .timeline-item:nth-child(3) .timeline-marker { background: var(--color-sunshine); }
+    .timeline-item:nth-child(4) .timeline-marker { background: var(--color-cyclamen); }
+
+    .timeline-content {
+      flex: 1;
+    }
+
+    .timeline-content h3 {
+      font-family: var(--font-heading);
+      margin: 0 0 var(--space-sm) 0;
+      color: var(--color-ocean);
+      font-size: 1.15rem;
+    }
+
+    .timeline-content p {
+      margin: 0 0 var(--space-sm) 0;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    .timeline-content ul {
+      margin: var(--space-sm) 0 0 0;
+      padding-left: 20px;
+      font-size: 0.95rem;
+    }
+
+    .timeline-content li {
+      margin-bottom: var(--space-xs);
+      color: #666;
+    }
+
+    /* Stats Section */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-lg);
+      margin: var(--space-xl) 0;
+    }
+
+    .stat-box {
+      background: var(--color-off-white);
+      padding: var(--space-lg);
+      border-radius: 8px;
+      text-align: center;
+      border-top: 4px solid var(--color-ocean);
+    }
+
+    .stat-box:nth-child(2) { border-top-color: var(--color-sea-green); }
+    .stat-box:nth-child(3) { border-top-color: var(--color-neon-blue); }
+    .stat-box:nth-child(4) { border-top-color: var(--color-sunshine); }
+
+    .stat-number {
+      font-family: var(--font-heading);
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: var(--color-ocean);
+      margin: 0;
+    }
+
+    .stat-label {
+      font-size: 0.9rem;
+      color: #666;
+      margin-top: var(--space-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      font-weight: 600;
+    }
+
+    /* Callout Box */
+    .callout {
+      background: var(--color-off-white);
+      border-left: 5px solid var(--color-sunshine);
+      padding: var(--space-lg);
+      margin: var(--space-xl) 0;
+      border-radius: 4px;
+    }
+
+    .callout h3 {
+      font-family: var(--font-heading);
+      color: var(--color-ocean);
+      margin-top: 0;
+    }
+
+    .callout p {
+      margin-bottom: 0;
+      color: #666;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: var(--color-ocean);
+      color: white;
+      padding: var(--space-xl);
+      border-radius: 8px;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .cta-section h2 {
+      color: white;
+      margin-bottom: var(--space-md);
+    }
+
+    .cta-section p {
+      font-size: 1.1rem;
+      margin-bottom: var(--space-lg);
+      opacity: 0.95;
+    }
+
+    .cta-button {
+      display: inline-block;
+      background: var(--color-sunshine);
+      color: var(--color-ocean);
+      padding: 12px 32px;
+      border-radius: 4px;
+      font-family: var(--font-heading);
+      font-weight: 700;
+      text-decoration: none;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .cta-button:hover {
+      background: #FFD966;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(10, 63, 95, 0.2);
+    }
+
+    footer {
+      background: var(--color-ocean);
+      color: white;
+      text-align: center;
+      padding: var(--space-lg);
+      margin-top: 60px;
+      font-size: 0.95rem;
+    }
+
+    footer p {
+      margin: 0;
+      opacity: 0.9;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+
+      h2 {
+        font-size: 1.5rem;
+      }
+
+      .flow-container {
+        gap: var(--space-sm);
+      }
+
+      .flow-step {
+        min-width: 140px;
+        padding: var(--space-md);
+      }
+
+      .flow-arrow {
+        display: none;
+      }
+
+      .timeline-item {
+        padding-left: 50px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <span>1TEAM</span>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>How 1Team Benefits Work</h1>
+    <p>From company onboarding to employee rewards — a clear path to better workplace perks</p>
+  </section>
+
+  <main>
+    <!-- Overview -->
+    <section class="overview">
+      <p class="overview-stat">5 Simple Steps</p>
+      <p class="overview-label">Bringing world-class benefits to your team</p>
+    </section>
+
+    <!-- Main Flow Diagram -->
+    <section>
+      <h2>The 1Team Journey</h2>
+      <div class="flow-container">
+        <div class="flow-step">
+          <div class="flow-step-number">1</div>
+          <h3>Onboard Your Company</h3>
+          <p>Sign up and configure your benefits packages for your team size and industry</p>
+          <div class="flow-arrow">→</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-number">2</div>
+          <h3>Customize Packages</h3>
+          <p>Choose from preset bundles or build your own mix of health, wellness, and lifestyle perks</p>
+          <div class="flow-arrow">→</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-number">3</div>
+          <h3>Invite Employees</h3>
+          <p>Send personalized invitations to your team with their unique access codes</p>
+          <div class="flow-arrow">→</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-number">4</div>
+          <h3>Employees Explore</h3>
+          <p>Your team logs in, discovers their available perks, and adds favorites to their profile</p>
+          <div class="flow-arrow">→</div>
+        </div>
+        <div class="flow-step">
+          <div class="flow-step-number">5</div>
+          <h3>Unlock Rewards</h3>
+          <p>Employees access discounts, wellness credits, and exclusive partner benefits immediately</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- What's Included -->
+    <section>
+      <h2>What Your Team Gets Access To</h2>
+      <div class="benefits-grid">
+        <div class="benefit-card">
+          <div class="benefit-icon">🏥</div>
+          <h3>Health & Wellness</h3>
+          <p>Fitness subscriptions, mental health support, and preventative care programs</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🎓</div>
+          <h3>Learning & Growth</h3>
+          <p>Online courses, professional certifications, and skill-building platforms</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🏷️</div>
+          <h3>Lifestyle Perks</h3>
+          <p>Dining discounts, retail offers, and entertainment packages from vetted partners</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">👨‍👩‍👧</div>
+          <h3>Family Benefits</h3>
+          <p>Childcare support, family wellness programs, and dependent care resources</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">💼</div>
+          <h3>Career Support</h3>
+          <p>Coaching, CV reviews, and career development mentorship</p>
+        </div>
+        <div class="benefit-card">
+          <div class="benefit-icon">🌍</div>
+          <h3>Travel & Leisure</h3>
+          <p>Discounted getaways, hotel deals, and exclusive travel experiences</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Timeline: Key Milestones -->
+    <section>
+      <h2>Implementation Timeline</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-marker">Week 1</div>
+          <div class="timeline-content">
+            <h3>Rapid Setup</h3>
+            <p>Your company is onboarded and benefits packages are configured. You'll have immediate access to our admin dashboard.</p>
+            <ul>
+              <li>Company info and team size verified</li>
+              <li>Package selection completed</li>
+              <li>Admin dashboard activated</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">Week 2</div>
+          <div class="timeline-content">
+            <h3>Team Invitations</h3>
+            <p>Your employees receive personalized invitations and start creating their 1Team accounts.</p>
+            <ul>
+              <li>Bulk invite sent to your roster</li>
+              <li>Employees receive unique onboarding links</li>
+              <li>First team members log in</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">Week 3–4</div>
+          <div class="timeline-content">
+            <h3>Active Engagement</h3>
+            <p>Your team explores their perks, adds favorites, and starts redeeming benefits with partner vendors.</p>
+            <ul>
+              <li>Employees customize their profiles</li>
+              <li>First redemptions begin</li>
+              <li>You see real-time engagement metrics</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-marker">Ongoing</div>
+          <div class="timeline-content">
+            <h3>Continuous Support</h3>
+            <p>1Team handles partner relationships, adds new perks quarterly, and provides you with engagement reports and recommendations.</p>
+            <ul>
+              <li>Monthly performance reviews</li>
+              <li>New partner benefits added</li>
+              <li>Dedicated account management</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Stats -->
+    <section>
+      <h2>Why Companies Choose 1Team</h2>
+      <div class="stats-grid">
+        <div class="stat-box">
+          <p class="stat-number">50+</p>
+          <p class="stat-label">Partner Vendors</p>
+        </div>
+        <div class="stat-box">
+          <p class="stat-number">85%</p>
+          <p class="stat-label">Employee Adoption</p>
+        </div>
+        <div class="stat-box">
+          <p class="stat-number">2–5x</p>
+          <p class="stat-label">ROI Within First Year</p>
+        </div>
+        <div class="stat-box">
+          <p class="stat-number">24/7</p>
+          <p class="stat-label">Support & Access</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Insight -->
+    <div class="callout">
+      <h3>For HR Leaders & Business Owners</h3>
+      <p>1Team takes the complexity out of benefits management. No more juggling multiple vendors or spreadsheets. We handle vendor relationships, ensure compliance, and give your team a world-class perks experience — all from one dashboard. Your employees stay happier. You get real data on what works.</p>
+    </div>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+      <h2>Ready to Transform Your Benefits?</h2>
+      <p>Join forward-thinking companies that trust 1Team to deliver better perks, stronger engagement, and measurable impact.</p>
+      <button class="cta-button">Let's Talk</button>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <p>1TEAM — Building stronger workplace cultures, one benefit at a time</p>
+  </footer>
+
+</body>
+</html>
